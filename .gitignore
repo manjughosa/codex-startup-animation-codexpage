@@ -1,0 +1,11 @@
+/.local/
+/.local-*/
+**/.local/
+**/.local-*/
+**/cdp-profile/
+**/logs/
+**/state*.json
+**/video-ready.json
+**/*.log
+**/*.log.lock
+**/*.tmp
