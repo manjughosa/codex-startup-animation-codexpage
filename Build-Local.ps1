@@ -27,6 +27,18 @@ if (Test-Path -LiteralPath $root) { throw 'Choose a new destination. Existing in
 $stage = Join-Path ([IO.Path]::GetTempPath()) ('CodexPlugin3-' + [guid]::NewGuid().ToString('N'))
 try {
     & (Join-Path $r16 'Build.ps1') -MediaRoot $media -OutputDirectory $stage -SkipZip
+    $packageVersion = (Get-Content -LiteralPath (Join-Path $stage 'release-manifest.json') -Raw -Encoding UTF8 | ConvertFrom-Json).version
+    if ($packageVersion -cne '34.4-reliability-r16-test') { throw 'The integration input no longer matches R16.' }
+    $pageVersion = (Get-Content -LiteralPath (Join-Path $codexPage 'VERSION') -Raw -Encoding UTF8).Trim()
+    if ($pageVersion -cnotmatch '^\d+\.\d+\.\d+$') { throw 'The bundled CodexPage version is invalid.' }
+    $integrationVersion = 'R16' + [char]0x2014 + $pageVersion
+    [IO.File]::WriteAllText((Join-Path $stage 'VERSION'), $integrationVersion + [Environment]::NewLine, [Text.UTF8Encoding]::new($false))
+    [IO.File]::WriteAllText((Join-Path $stage 'package-version.json'), ([ordered]@{
+        integration = $integrationVersion
+        startupAnimation = 'R16'
+        startupAnimationUpstream = '34.4-reliability-r16-test'
+        codexPage = $pageVersion
+    } | ConvertTo-Json), [Text.UTF8Encoding]::new($false))
     $skin = Join-Path $root 'CodexPage'
     & (Join-Path $codexPage 'scripts/install.ps1') -InstallRoot $skin -SkipShortcuts -SkipBackgroundTask
     . (Join-Path $skin 'scripts/media.ps1')
