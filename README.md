@@ -8,8 +8,8 @@
 
 ## 日常使用
 
-- 双击桌面的 **3号插件**：开屏动画、等待 Codex 窗口就绪并播放动态壁纸。
-- 双击桌面的 **3号插件 - 壁纸管理器**：选择图库里的 **Dragon Ambient**（常态版）或 **Dragon Particles**（粒子版），也可以导入自己的图片或视频。
+- 双击**插件整合包**：开屏动画、等待 Codex 窗口就绪并播放动态壁纸。
+- 双击**插件整合包 - 壁纸管理器**：选择图库里的 **Dragon Ambient**（常态版）或 **Dragon Particles**（粒子版），也可以导入自己的图片或视频。
 - 也可以直接运行安装目录内的 `Launch.exe` 和 `CodexPage\CodexSkinManager.exe`。
 
 ## 上游与分工
