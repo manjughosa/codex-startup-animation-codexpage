@@ -6,7 +6,7 @@ param(
 
 $ErrorActionPreference = 'Stop'
 $stage = Join-Path (Split-Path -Parent $PSScriptRoot) '.local'
-$r16 = Join-Path $stage 'R16'
+$r16 = Join-Path (Split-Path -Parent $PSScriptRoot) 'third_party/R16'
 $media = Join-Path $stage 'R16-media'
 $upstream = [IO.Path]::GetFullPath($UpstreamDirectory).TrimEnd('\')
 if (Test-Path -LiteralPath (Join-Path $stage 'inputs.json') -PathType Leaf) {

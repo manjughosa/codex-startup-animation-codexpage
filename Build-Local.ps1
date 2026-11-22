@@ -14,7 +14,7 @@ if (-not (Test-Path -LiteralPath $inputs -PathType Leaf)) {
 }
 $current = Get-Content -LiteralPath $inputs -Raw -Encoding UTF8 | ConvertFrom-Json
 if ($current.schema -ne 1 -or -not $current.ready) { throw 'The input preparation did not complete.' }
-$r16 = Join-Path $local 'R16'
+$r16 = Join-Path $PSScriptRoot 'third_party/R16'
 $media = Join-Path $local 'R16-media'
 $videos = Join-Path $local 'DragonVideos'
 $root = [IO.Path]::GetFullPath($Destination).TrimEnd('\')
