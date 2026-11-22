@@ -86,7 +86,7 @@ if (($baseline | ConvertTo-Json -Depth 8 -Compress) -cne ($currentManifest | Con
 
 if ($FetchNode) {
     $runtime = Join-Path $stage 'CodexPage/engine/runtime/node'
-    $pin = Get-Content -LiteralPath (Join-Path $stage 'CodexPage/scripts/node-runtime.json') -Raw | ConvertFrom-Json
+    $pin = Get-Content -LiteralPath (Join-Path (Split-Path -Parent $PSScriptRoot) 'third_party/CodexPage/scripts/node-runtime.json') -Raw | ConvertFrom-Json
     $archive = Join-Path $stage $pin.archive
     $nodeRoot = Join-Path $stage 'node-download'
     [IO.Directory]::CreateDirectory($runtime) | Out-Null
